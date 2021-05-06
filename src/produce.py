@@ -4,7 +4,7 @@ from confluent_kafka import Producer
 import csv
 import json
 
-file_name = "abalone_full.csv"
+file_name = "../data/abalone_full.csv"
 topic_name = "abalone"
 
 p = Producer({'bootstrap.servers': 'localhost:9092'})

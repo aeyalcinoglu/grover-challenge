@@ -7,6 +7,7 @@ import csv
 app_name = "grover-task"
 topic_name = "abalone"
 buffer_flush_time_limit = 5
+dest_dict_name = "../data/results/"
 
 test_1_output_file_name = "test_1.csv"
 test_2_output_file_name = "test_2.csv"
@@ -16,9 +17,9 @@ subtask_1_file_name = "infants_with_more_than_14_rings.csv"
 subtask_2_file_name = "males_heavy_and_short.csv"
 subtask_3_file_name = "shell_humidity.csv"
 
-output_1_file_name = subtask_1_file_name
-output_2_file_name = subtask_2_file_name
-output_3_file_name = subtask_3_file_name
+output_1_file_name = dest_dict_name+subtask_1_file_name
+output_2_file_name = dest_dict_name+subtask_2_file_name
+output_3_file_name = dest_dict_name+subtask_3_file_name
 
 
 class Abalone(faust.Record):
@@ -33,7 +34,7 @@ class Abalone(faust.Record):
     Class_number_of_rings: int
 
 
-app = faust.App(app_name, topic_partitions=1, broker='kafka://127.0.0.1:9092',
+app = faust.App(app_name, topic_partitions=1, broker='kafka://localhost:9092',
                 store="memory://")
 
 
@@ -92,6 +93,7 @@ async def buffer_cleaner():
             csv_file_1.close()
             csv_file_2.close()
             csv_file_3.close()
+            os.system('kill -9 {}'.format(os.getpid()))
     except NameError:
         pass
     last_mod_1 = os.path.getmtime(output_1_file_name)

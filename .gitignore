@@ -1,0 +1,8 @@
+# docker image source repo
+kafka-docker
+
+# last generated results
+data/results/*.csv
+
+# for self-reference and test
+src/consume.py
