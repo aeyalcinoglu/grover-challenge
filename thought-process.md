@@ -24,7 +24,7 @@ At this point I go on with complete trust to the stack and my general approach.
 
 
 # Comments
-- Even though it's very rigid and discrete, Kafka having concepts like [Stream Processing Topology](https://kafka.apache.org/0102/documentation/streams/core-concepts) is exciting, and I have the vague idea that it can be generalized (at least to thes simplicial complexes).
+- Even though it's very rigid and discrete, Kafka having concepts like [Stream Processing Topology](https://kafka.apache.org/0102/documentation/streams/core-concepts) is exciting, and I have the vague idea that it can be generalized (at least to the simplicial complexes).
 - Faust was not well-documented and buggy. Sending kill signal and restarting the worker was a pain. I see that it has very [recent issues](https://github.com/robinhood/faust/issues/711) on these topics on github. However, I can't tell if these are just about [`asyncio`](https://stackoverflow.com/questions/48562893/how-to-gracefully-terminate-an-asyncio-script-with-ctrl-c).
 - The fact that [Spotify's docker image](https://github.com/spotify/docker-kafka) for Kafka + Zookeeper is documented worse (and hence harder to use) than [wurstmeister's docker image](https://github.com/wurstmeister/kafka-docker) was surprising.
 - I was looking for the low-level algorithms and efficiency hacks that Kafka uses. [Sendfile](https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/9fc04120-fdda-4453-af7c-e89fd9f1dc31.xhtml) operation is one of them.

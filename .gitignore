@@ -10,3 +10,6 @@ src/consume.py
 # auto-generated
 src/__pycache__
 src/grover-task-data
+
+# assignment
+*.pdf
