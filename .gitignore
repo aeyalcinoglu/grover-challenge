@@ -6,3 +6,7 @@ data/results/*.csv
 
 # for self-reference and test
 src/consume.py
+
+# auto-generated
+src/__pycache__
+src/grover-task-data

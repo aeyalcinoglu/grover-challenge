@@ -9,6 +9,8 @@ topic_name = "abalone"
 buffer_flush_time_limit = 5
 dest_dict_name = "../data/results/"
 
+# 'output_n_file_name' is the only one that's used in the code.
+
 test_1_output_file_name = "test_1.csv"
 test_2_output_file_name = "test_2.csv"
 test_3_output_file_name = "test_3.csv"
@@ -41,6 +43,7 @@ app = faust.App(app_name, topic_partitions=1, broker='kafka://localhost:9092',
 abalone_topic = app.topic(topic_name, key_type=bytes,
                           value_type=Abalone, partitions=1)
 
+# create csv files with headers, and 'writers' for them. File_3 has an additional column.
 
 csv_columns = ["id", "Sex", "Length", "Diameter", "Height", "Whole_weight",
                "Shucked_weight", "Viscera_weight", "Shell_weight", "Class_number_of_rings"]
@@ -59,6 +62,9 @@ dict_writer_3 = csv.DictWriter(
 dict_writer_1.writeheader()
 dict_writer_2.writeheader()
 dict_writer_3.writeheader()
+
+# these are sinks to be used by the agents below.
+# csv_writer is used for the subtask_1 and subtask_2.
 
 
 def csv_writer(dict_writer, enum, message):
@@ -81,6 +87,8 @@ def humidity_writer(humidity, key, value):
 
     dict_writer_3.writerow(writable)
 
+# this is a hack to close the files, and clean the buffer.
+
 
 @app.timer(interval=buffer_flush_time_limit)
 async def buffer_cleaner():
@@ -101,6 +109,7 @@ async def buffer_cleaner():
     last_mod_3 = os.path.getmtime(output_3_file_name)
 
 
+# couldn't use group_by, since 'Class_number_of_rings' had type int, is this equivalent?
 @app.agent(abalone_topic)
 async def subtask_1(stream, sink=[csv_writer]):
 
