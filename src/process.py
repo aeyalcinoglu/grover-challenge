@@ -1,3 +1,5 @@
+# TODO : Refactor dict(vars...)
+
 # coding: utf8
 
 import faust
@@ -67,10 +69,10 @@ dict_writer_3.writeheader()
 # csv_writer is used for the subtask_1 and subtask_2.
 
 
-def csv_writer(dict_writer, enum, message):
-    print(message)
+def csv_writer(dict_writer, enum, value):
+    print(value)
 
-    writable = dict(message)
+    writable = dict(value)
     writable["id"] = enum
     del writable['__evaluated_fields__']
 
