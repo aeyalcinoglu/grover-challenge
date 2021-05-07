@@ -12,9 +12,9 @@
 # Coding
 At this point I go on with complete trust to the stack and my general approach.
 - I first divided the task into 5 or so pieces, the first one being "produce and consume abalone_full csv file with just `confluent_kafka`". This was basically reading the [`confluent-kafka` documentation](https://docs.confluent.io/clients-confluent-kafka-python/current/overview.html), and connecting everything together.
-- I also needed to setup an kafka environment, for which I decided to use Docker, however this was painful. [These notes](https://jaceklaskowski.gitbooks.io/apache-kafka/content/kafka-docker.html) were helpful.
+- I also needed to setup a kafka environment, for which I decided to use Docker, however this was painful. [These notes](https://jaceklaskowski.gitbooks.io/apache-kafka/content/kafka-docker.html) were helpful.
 - For processing, I first tried to have a trivial faust app, where it basically writes the stream to a csv file, hence generating an equivalent csv file to the input. Then I slowly found my way into the tasks.
-- One of the first problems I faced was that `group_by` keyword in Faust seem to not work on `int` typed field descriptors. This made me use a hack instead of that keyword, which is probably not health due to that whole `async` world.
+- One of the first problems I faced was that `group_by` keyword in Faust seem to not work on `int` typed field descriptors. This made me use a hack instead of that keyword, which is probably not healthy due to that whole `async` world.
 - Another problem was to decide when to close the csv files. Since it's in theory an infinite process, I thought a decent way is to just check if there's an update to the new csv files every some (let's say 10) seconds. I didn't want to make it depend on the input file, but this feels extremely hacky too. I couldn't get the data in the buffer without closing the file.
 
 
