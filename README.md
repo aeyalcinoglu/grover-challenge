@@ -1,6 +1,6 @@
 # Grover Take-Home Test
 
-I was asked to solve [an assignment](https://github.com/devsbb/grover-engineering-recruitment/tree/master/challenges/abalone-data-processing) for the [SWE - Risk & Data](https://boards.greenhouse.io/grover/jobs/4470003003) position. For some notes see `thought-process.md`. You can find the resulting csv files in `data/final-results`.
+I was asked to solve [an assignment](https://github.com/devsbb/grover-engineering-recruitment/tree/master/challenges/abalone-data-processing) for the [SWE - Risk & Data](https://web.archive.org/web/20211122174537/https://boards.greenhouse.io/grover/jobs/4470003003) position. For some notes see `thought-process.md`. You can find the resulting csv files in `data/final-results`.
 
 ## How to build
 
